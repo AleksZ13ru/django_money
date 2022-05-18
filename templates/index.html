@@ -1,0 +1,71 @@
+{% extends "base.html " %}
+
+{% block content %}
+    <div class="container">
+        <div class="row justify-content-md-center">
+            <div class="col-auto">
+                <h2>Конвертор курса валют</h2>
+                <div class="card" style="width: 24rem">
+                    <div class="card-body">
+                        <form action="/" method="post">
+                            {% csrf_token %}
+                            <label class="form-label" for="">-----</label>
+                            <div class="row g-3">
+                                <div class="row g-3">
+                                    <div class="col-auto">
+                                        <input class="form-control" id="" type="text" name="money_from_value"
+                                               value="{{ money_from_value }}">
+                                    </div>
+                                    <div class="col">
+                                        <select class="form-select" aria-label="Default select example"
+                                                name="money_from">
+                                            {% for money in money_list %}
+                                                {% if money == money_from %}
+                                                    <option selected value={{ money }}>{{ money }}</option>
+                                                {% else %}
+                                                    <option value={{ money }}>{{ money }}</option>
+                                                {% endif %}
+                                            {% endfor %}
+                                        </select>
+                                    </div>
+
+                                </div>
+                                <div class="row g-3">
+                                    <div class="col-auto">
+                                        <input class="form-control" id="" type="text" name="money_to_value"
+                                               value="{{ money_to_value }}" disabled>
+                                    </div>
+                                    <div class="col">
+                                        <select class="form-select" aria-label="Default select example"
+                                        name="money_to">
+                                            {% for money in money_list %}
+                                                {% if money == money_to %}
+                                                    <option selected value={{ money }}>{{ money }}</option>
+                                                {% else %}
+                                                    <option value={{ money }}>{{ money }}</option>
+                                                {% endif %}
+                                            {% endfor %}
+                                        </select>
+                                    </div>
+
+                                </div>
+                                <div class="row g-3">
+                                    <div class="d-grid gap-2">
+                                        <button class="btn btn-primary" type="submit">Конвертировать</button>
+                                    </div>
+                                </div>
+
+
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+{% endblock %}
